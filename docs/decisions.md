@@ -98,3 +98,46 @@ the API exposes is wasted human time.
 **Consequences.** Bucket 3 findings ("attestation overdue") flow through the
 same bus and router as Bucket 1 findings. Auditors see one evidence store with
 honest labels about what each item does and does not prove.
+
+---
+
+## ADR-004 — A deliberate ASFF subset, deterministic Ids, and what the native integration already does
+
+**Status:** accepted
+
+**Context.** ASFF has ~100 top-level and nested fields. A normalizer that
+tries to populate all of them produces findings full of empty stubs, and a
+validator that checks all of them is a second copy of AWS's documentation.
+
+**Decision.** `normalizer/asff.py` emits only: the BatchImportFindings
+required fields, `Compliance.Status`, `ProductFields`, `RecordState`, and
+`Workflow`. Optional blocks we have no data for (Network, Process, Malware,
+ThreatIntelIndicators…) are *omitted*, never stubbed — an empty field reads
+as "checked, nothing found," which is a false statement about what we
+collected.
+
+Three sub-decisions worth defending:
+
+1. **Deterministic finding Ids** (`source/control/resource`), not UUIDs.
+   Security Hub upserts on Id, so re-running a check updates `UpdatedAt` on
+   the existing finding instead of accumulating duplicates. Finding volume is
+   the Security Hub cost line — idempotency is the guardrail. Cost: two
+   *different* problems on the same resource+control collapse into one
+   finding; acceptable because our checks are single-assertion by design.
+
+2. **PASSED findings are always INFORMATIONAL**, whatever the control's
+   failure severity. Severity describes the risk of the *finding*, not the
+   importance of the *control* — a passing CRITICAL control is not a critical
+   event. The catalog severity applies only on FAILED.
+
+3. **`from_config_evaluation` re-implements what the Config→Security Hub
+   native integration does for free.** In production you'd enable the
+   integration and delete that adapter. It exists because the local pipeline
+   has no Config service — and writing it documents exactly what the
+   integration buys you (Id scheme, severity mapping, compliance status),
+   which is the kind of thing that otherwise only lives in AWS's heads.
+
+**Consequences.** Findings are smaller than typical Security Hub product
+findings; consumers needing Remediation.Recommendation or FindingProviderFields
+must extend the builder (and the validator — they move together by design,
+`build_finding` calls `validate` before returning).
