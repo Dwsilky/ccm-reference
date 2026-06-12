@@ -1,0 +1,119 @@
+[
+  {
+    "message": "No multi-region CloudTrail trail is enabled and logging.",
+    "metadata": {
+      "event_code": "cloudtrail_multi_region_enabled",
+      "product": {
+        "name": "Prowler",
+        "vendor_name": "Prowler",
+        "version": "4.6.0"
+      }
+    },
+    "severity_id": 4,
+    "severity": "High",
+    "status": "New",
+    "status_code": "FAIL",
+    "status_detail": "No CloudTrail trails enabled and logging were found in account 123456789012.",
+    "cloud": {
+      "provider": "aws",
+      "account": {
+        "uid": "123456789012"
+      },
+      "region": "us-east-1"
+    },
+    "resources": [
+      {
+        "cloud_partition": "aws",
+        "region": "us-east-1",
+        "name": "123456789012",
+        "uid": "arn:aws:cloudtrail:us-east-1:123456789012:trail",
+        "type": "AwsCloudTrailTrail"
+      }
+    ],
+    "finding_info": {
+      "created_time_dt": "2026-06-10T14:02:11.000000Z",
+      "desc": "Ensure CloudTrail is enabled in all regions",
+      "title": "Ensure CloudTrail is enabled in all regions",
+      "uid": "prowler-aws-cloudtrail_multi_region_enabled-123456789012-us-east-1-123456789012"
+    },
+    "type_uid": 200401
+  },
+  {
+    "message": "Block Public Access is configured for the account 123456789012.",
+    "metadata": {
+      "event_code": "s3_account_level_public_access_blocks",
+      "product": {
+        "name": "Prowler",
+        "vendor_name": "Prowler",
+        "version": "4.6.0"
+      }
+    },
+    "severity_id": 4,
+    "severity": "High",
+    "status": "New",
+    "status_code": "PASS",
+    "status_detail": "Block Public Access is configured for the account 123456789012.",
+    "cloud": {
+      "provider": "aws",
+      "account": {
+        "uid": "123456789012"
+      },
+      "region": "us-east-1"
+    },
+    "resources": [
+      {
+        "cloud_partition": "aws",
+        "region": "us-east-1",
+        "name": "123456789012",
+        "uid": "arn:aws:s3:us-east-1:123456789012:account",
+        "type": "AwsS3AccountPublicAccessBlock"
+      }
+    ],
+    "finding_info": {
+      "created_time_dt": "2026-06-10T14:02:13.000000Z",
+      "desc": "Check S3 Account Level Public Access Block",
+      "title": "Check S3 Account Level Public Access Block",
+      "uid": "prowler-aws-s3_account_level_public_access_blocks-123456789012-us-east-1-123456789012"
+    },
+    "type_uid": 200401
+  },
+  {
+    "message": "EC2 Instance i-0a1b2c3d4e5f67890 has IMDSv2 disabled or not required.",
+    "metadata": {
+      "event_code": "ec2_instance_imdsv2_enabled",
+      "product": {
+        "name": "Prowler",
+        "vendor_name": "Prowler",
+        "version": "4.6.0"
+      }
+    },
+    "severity_id": 3,
+    "severity": "Medium",
+    "status": "New",
+    "status_code": "FAIL",
+    "status_detail": "EC2 Instance i-0a1b2c3d4e5f67890 has IMDSv2 disabled or not required.",
+    "cloud": {
+      "provider": "aws",
+      "account": {
+        "uid": "123456789012"
+      },
+      "region": "us-east-1"
+    },
+    "resources": [
+      {
+        "cloud_partition": "aws",
+        "region": "us-east-1",
+        "name": "i-0a1b2c3d4e5f67890",
+        "uid": "arn:aws:ec2:us-east-1:123456789012:instance/i-0a1b2c3d4e5f67890",
+        "type": "AwsEc2Instance"
+      }
+    ],
+    "finding_info": {
+      "created_time_dt": "2026-06-10T14:02:19.000000Z",
+      "desc": "Check if EC2 Instance Metadata Service Version 2 (IMDSv2) is enabled and required",
+      "title": "Check if EC2 Instance Metadata Service Version 2 (IMDSv2) is enabled and required",
+      "uid": "prowler-aws-ec2_instance_imdsv2_enabled-123456789012-us-east-1-i-0a1b2c3d4e5f67890"
+    },
+    "type_uid": 200401
+  }
+]
