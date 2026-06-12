@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8.0
+moto[s3,iam,ec2,rds,cloudtrail,config,s3control]>=5.0
+ruff>=0.4
