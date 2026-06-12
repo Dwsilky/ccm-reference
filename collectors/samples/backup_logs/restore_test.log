@@ -1,0 +1,12 @@
+# acme-backup suite job log — host backup01 — rotated 2026-03-31T00:00:02Z
+2026-04-01T01:14:55Z INFO  job=nightly-db-backup status=SUCCESS size=18234MB elapsed=1820s
+2026-04-01T01:20:11Z INFO  job=nightly-files-backup status=SUCCESS size=4012MB elapsed=304s
+Apr  5 03:11:02 backup01 acme-restore[2214]: RESTORE TEST job=q2-restore-test-db target=staging result=FAILED reason="checksum mismatch in tablespace 7"
+Apr  5 03:58:40 backup01 acme-restore[2214]: RESTORE TEST job=q2-restore-test-db target=staging result=SUCCESS duration=2847s rows_verified=1842210
+■■□� acme-backup 2.3 writes this garbage on logrotate ��
+2026-04-12 02:00:03 [restore-verify] job "q2-restore-test-files" completed OK (verified 18,442 files)
+2026-04-12 02:00:03 [restore-verify] job "q2-restore-test-files" completed OK (verified 18,442 files)
+2026-05-01T01:14:09Z INFO  job=nightly-db-backup status=SUCCESS size=18991MB elapsed=1903s
+05/22/2026 04:12:18 restore_test job=adhoc-dev-refresh result=SUCCESS note="developer sandbox refresh, not a scheduled test"
+Jun  2 04:00:17 backup01 acme-restore[8841]: RESTORE TEST job=q2-restore-test-tape target=staging result=FAILED reason="media not found in library"
+2026-06-03T01:14:21Z INFO  job=nightly-db-backup status=SUCCESS size=19440MB elapsed=1944s
