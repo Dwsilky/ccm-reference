@@ -1,0 +1,204 @@
+# Single source of truth for the control catalog.
+# coverage-matrix.md is GENERATED from this file (scripts/gen_matrix.py) so the
+# README matrix can never drift from what the code actually implements.
+#
+# bucket values:
+#   machine    - machine-evaluable: config state we can compute pass/fail on
+#   attestable - evidence-attestable: can't compute pass/fail, but can pull the
+#                artifact proving a process ran, on a schedule
+#   judgment   - human-judgment: automate only the reminder + tracking
+#
+# status: implemented | planned
+
+controls:
+  # ---- Bucket 1: machine-evaluable (custom AWS Config rules) ----
+  - id: CCM-01
+    name: S3 account public-access block enabled
+    bucket: machine
+    csf: PR.DS-5
+    nist_800_53: [SC-7]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/s3_public_access_block
+    status: implemented
+
+  - id: CCM-02
+    name: S3 buckets enforce default encryption
+    bucket: machine
+    csf: PR.DS-1
+    nist_800_53: [SC-28]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/s3_bucket_encryption
+    status: implemented
+
+  - id: CCM-03
+    name: RDS instances encrypted at rest
+    bucket: machine
+    csf: PR.DS-1
+    nist_800_53: [SC-28]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/rds_encryption
+    status: planned
+
+  - id: CCM-04
+    name: EBS volumes encrypted
+    bucket: machine
+    csf: PR.DS-1
+    nist_800_53: [SC-28]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/ebs_encryption
+    status: planned
+
+  - id: CCM-05
+    name: IAM password policy meets standard
+    bucket: machine
+    csf: PR.AC-1
+    nist_800_53: [IA-5]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/iam_password_policy
+    status: implemented
+
+  - id: CCM-06
+    name: MFA enabled for console users
+    bucket: machine
+    csf: PR.AC-7
+    nist_800_53: ["IA-2(1)"]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/iam_user_mfa
+    status: planned
+
+  - id: CCM-07
+    name: Root account has no access keys
+    bucket: machine
+    csf: PR.AC-4
+    nist_800_53: [AC-6]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/root_access_keys
+    status: implemented
+
+  - id: CCM-08
+    name: No 0.0.0.0/0 ingress on sensitive ports
+    bucket: machine
+    csf: PR.AC-5
+    nist_800_53: [SC-7]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/sg_open_ingress
+    status: planned
+
+  - id: CCM-09
+    name: CloudTrail enabled, multi-region
+    bucket: machine
+    csf: PR.PT-1
+    nist_800_53: [AU-2]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/cloudtrail_enabled
+    status: planned
+
+  - id: CCM-10
+    name: CloudTrail log-file validation enabled
+    bucket: machine
+    csf: PR.DS-6
+    nist_800_53: [AU-9]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/cloudtrail_log_validation
+    status: planned
+
+  - id: CCM-11
+    name: Config recorder enabled (meta-control)
+    bucket: machine
+    csf: DE.CM-1
+    nist_800_53: [CM-8]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/config_recorder_enabled
+    status: planned
+
+  - id: CCM-12
+    name: VPC flow logs enabled
+    bucket: machine
+    csf: DE.AE-3
+    nist_800_53: [AU-12]
+    method: Custom Config rule (periodic Lambda)
+    source: config-rules/src/vpc_flow_logs
+    status: planned
+
+  # ---- Bucket 2: evidence-attestable (custom Python collectors) ----
+  - id: CCM-13
+    name: Quarterly access review occurred
+    bucket: attestable
+    csf: PR.AC-4
+    nist_800_53: ["AC-2(3)"]
+    method: Collector — GitHub Issues API, assert a labeled review ticket closed this quarter
+    source: collectors/access_review.py
+    status: planned
+
+  - id: CCM-14
+    name: Backup restore test succeeded
+    bucket: attestable
+    csf: PR.IP-4
+    nist_800_53: [CP-9]
+    method: Collector — parse backup-job logs, evidence a successful restore test
+    source: collectors/backup_restore.py
+    status: planned
+
+  - id: CCM-15
+    name: Vulnerability remediation SLAs met
+    bucket: attestable
+    csf: RS.MI-3
+    nist_800_53: [RA-5, SI-2]
+    method: Collector — scanner findings, compute time-to-remediate per severity
+    source: collectors/vuln_sla.py
+    status: planned
+
+  - id: CCM-16
+    name: Change approvals enforced on merges
+    bucket: attestable
+    csf: PR.IP-3
+    nist_800_53: [CM-3]
+    method: Collector — GitHub API, merged PRs carried a required approval
+    source: collectors/change_approval.py
+    status: planned
+
+  # ---- Bucket 3: human-judgment (reminder + tracking only) ----
+  - id: CCM-17
+    name: Security policy review / adequacy
+    bucket: judgment
+    csf: ID.GV-1
+    nist_800_53: [PL-1]
+    method: Judgment tracker — attestation cadence in judgment-register.yaml
+    source: router/judgment_tracker.py
+    status: planned
+
+  - id: CCM-18
+    name: Risk acceptances current (expiry tracked)
+    bucket: judgment
+    csf: ID.RA-6
+    nist_800_53: [CA-5]
+    method: Judgment tracker — attestation cadence in judgment-register.yaml
+    source: router/judgment_tracker.py
+    status: planned
+
+  - id: CCM-19
+    name: Vendor risk assessments performed
+    bucket: judgment
+    csf: ID.SC-2
+    nist_800_53: [SA-9]
+    method: Judgment tracker — attestation cadence in judgment-register.yaml
+    source: router/judgment_tracker.py
+    status: planned
+
+  - id: CCM-20
+    name: IR plan tabletop exercised
+    bucket: judgment
+    csf: PR.IP-10
+    nist_800_53: [IR-3]
+    method: Judgment tracker — attestation cadence in judgment-register.yaml
+    source: router/judgment_tracker.py
+    status: planned
+
+  - id: CCM-21
+    name: Data classification reviewed
+    bucket: judgment
+    csf: ID.AM-5
+    nist_800_53: [RA-2]
+    method: Judgment tracker — attestation cadence in judgment-register.yaml
+    source: router/judgment_tracker.py
+    status: planned
