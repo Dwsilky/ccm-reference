@@ -89,6 +89,6 @@ Work in progress, built in deliberate layers (see commit history):
 - [x] First custom Config rules with moto-tested evaluation logic (4/12)
 - [x] Remaining Config rules — machine-evaluable bucket complete (12/12, 43 tests)
 - [x] ASFF normalizer: Config + Prowler + custom collector → one schema, one bus (LocalBus/Security Hub)
-- [ ] Evidence collectors (attestable bucket)
+- [x] Evidence collectors — attestable bucket complete (4/4, incl. the hostile backup-log parser)
 - [ ] Router + judgment tracker + evidence loop
 - [ ] Terraform deploy/teardown for the real-AWS proof

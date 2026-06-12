@@ -153,7 +153,7 @@ controls:
     severity: MEDIUM
     method: Collector — GitHub Issues API, assert a labeled review ticket closed this quarter
     source: collectors/access_review.py
-    status: planned
+    status: implemented
 
   - id: CCM-14
     name: Backup restore test succeeded
@@ -163,7 +163,7 @@ controls:
     severity: HIGH
     method: Collector — parse backup-job logs, evidence a successful restore test
     source: collectors/backup_restore.py
-    status: planned
+    status: implemented
 
   - id: CCM-15
     name: Vulnerability remediation SLAs met
@@ -173,7 +173,7 @@ controls:
     severity: MEDIUM
     method: Collector — scanner findings, compute time-to-remediate per severity
     source: collectors/vuln_sla.py
-    status: planned
+    status: implemented
 
   - id: CCM-16
     name: Change approvals enforced on merges
@@ -183,7 +183,7 @@ controls:
     severity: MEDIUM
     method: Collector — GitHub API, merged PRs carried a required approval
     source: collectors/change_approval.py
-    status: planned
+    status: implemented
 
   # ---- Bucket 3: human-judgment (reminder + tracking only) ----
   - id: CCM-17

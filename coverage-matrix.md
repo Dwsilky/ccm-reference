@@ -2,7 +2,7 @@
 
 _Generated from `mappings/controls.yaml` by `scripts/gen_matrix.py` on 2026-06-12. Do not edit by hand._
 
-**21 controls** across the three buckets — **12 implemented**, 9 planned.
+**21 controls** across the three buckets — **16 implemented**, 5 planned.
 
 ## Machine-evaluable (12/12 implemented)
 
@@ -23,16 +23,16 @@ _Config state we can compute a pass/fail on. Fully automated._
 | CCM-11 | Config recorder enabled (meta-control) | DE.CM-1 | CM-8 | Custom Config rule (periodic Lambda) | `config-rules/src/config_recorder_enabled` | ✅ implemented |
 | CCM-12 | VPC flow logs enabled | DE.AE-3 | AU-12 | Custom Config rule (periodic Lambda) | `config-rules/src/vpc_flow_logs` | ✅ implemented |
 
-## Evidence-attestable (0/4 implemented)
+## Evidence-attestable (4/4 implemented)
 
 _No computable pass/fail, but the artifact proving the process ran can be pulled on a schedule._
 
 | ID | Control | CSF | 800-53 | Collection method | Source | Status |
 |---|---|---|---|---|---|---|
-| CCM-13 | Quarterly access review occurred | PR.AC-4 | AC-2(3) | Collector — GitHub Issues API, assert a labeled review ticket closed this quarter | `collectors/access_review.py` | ⬜ planned |
-| CCM-14 | Backup restore test succeeded | PR.IP-4 | CP-9 | Collector — parse backup-job logs, evidence a successful restore test | `collectors/backup_restore.py` | ⬜ planned |
-| CCM-15 | Vulnerability remediation SLAs met | RS.MI-3 | RA-5, SI-2 | Collector — scanner findings, compute time-to-remediate per severity | `collectors/vuln_sla.py` | ⬜ planned |
-| CCM-16 | Change approvals enforced on merges | PR.IP-3 | CM-3 | Collector — GitHub API, merged PRs carried a required approval | `collectors/change_approval.py` | ⬜ planned |
+| CCM-13 | Quarterly access review occurred | PR.AC-4 | AC-2(3) | Collector — GitHub Issues API, assert a labeled review ticket closed this quarter | `collectors/access_review.py` | ✅ implemented |
+| CCM-14 | Backup restore test succeeded | PR.IP-4 | CP-9 | Collector — parse backup-job logs, evidence a successful restore test | `collectors/backup_restore.py` | ✅ implemented |
+| CCM-15 | Vulnerability remediation SLAs met | RS.MI-3 | RA-5, SI-2 | Collector — scanner findings, compute time-to-remediate per severity | `collectors/vuln_sla.py` | ✅ implemented |
+| CCM-16 | Change approvals enforced on merges | PR.IP-3 | CM-3 | Collector — GitHub API, merged PRs carried a required approval | `collectors/change_approval.py` | ✅ implemented |
 
 ## Human-judgment (0/5 implemented)
 
