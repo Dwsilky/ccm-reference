@@ -2,9 +2,9 @@
 
 _Generated from `mappings/controls.yaml` by `scripts/gen_matrix.py` on 2026-06-12. Do not edit by hand._
 
-**21 controls** across the three buckets — **4 implemented**, 17 planned.
+**21 controls** across the three buckets — **12 implemented**, 9 planned.
 
-## Machine-evaluable (4/12 implemented)
+## Machine-evaluable (12/12 implemented)
 
 _Config state we can compute a pass/fail on. Fully automated._
 
@@ -12,16 +12,16 @@ _Config state we can compute a pass/fail on. Fully automated._
 |---|---|---|---|---|---|---|
 | CCM-01 | S3 account public-access block enabled | PR.DS-5 | SC-7 | Custom Config rule (periodic Lambda) | `config-rules/src/s3_public_access_block` | ✅ implemented |
 | CCM-02 | S3 buckets enforce default encryption | PR.DS-1 | SC-28 | Custom Config rule (periodic Lambda) | `config-rules/src/s3_bucket_encryption` | ✅ implemented |
-| CCM-03 | RDS instances encrypted at rest | PR.DS-1 | SC-28 | Custom Config rule (periodic Lambda) | `config-rules/src/rds_encryption` | ⬜ planned |
-| CCM-04 | EBS volumes encrypted | PR.DS-1 | SC-28 | Custom Config rule (periodic Lambda) | `config-rules/src/ebs_encryption` | ⬜ planned |
+| CCM-03 | RDS instances encrypted at rest | PR.DS-1 | SC-28 | Custom Config rule (periodic Lambda) | `config-rules/src/rds_encryption` | ✅ implemented |
+| CCM-04 | EBS volumes encrypted | PR.DS-1 | SC-28 | Custom Config rule (periodic Lambda) | `config-rules/src/ebs_encryption` | ✅ implemented |
 | CCM-05 | IAM password policy meets standard | PR.AC-1 | IA-5 | Custom Config rule (periodic Lambda) | `config-rules/src/iam_password_policy` | ✅ implemented |
-| CCM-06 | MFA enabled for console users | PR.AC-7 | IA-2(1) | Custom Config rule (periodic Lambda) | `config-rules/src/iam_user_mfa` | ⬜ planned |
+| CCM-06 | MFA enabled for console users | PR.AC-7 | IA-2(1) | Custom Config rule (periodic Lambda) | `config-rules/src/iam_user_mfa` | ✅ implemented |
 | CCM-07 | Root account has no access keys | PR.AC-4 | AC-6 | Custom Config rule (periodic Lambda) | `config-rules/src/root_access_keys` | ✅ implemented |
-| CCM-08 | No 0.0.0.0/0 ingress on sensitive ports | PR.AC-5 | SC-7 | Custom Config rule (periodic Lambda) | `config-rules/src/sg_open_ingress` | ⬜ planned |
-| CCM-09 | CloudTrail enabled, multi-region | PR.PT-1 | AU-2 | Custom Config rule (periodic Lambda) | `config-rules/src/cloudtrail_enabled` | ⬜ planned |
-| CCM-10 | CloudTrail log-file validation enabled | PR.DS-6 | AU-9 | Custom Config rule (periodic Lambda) | `config-rules/src/cloudtrail_log_validation` | ⬜ planned |
-| CCM-11 | Config recorder enabled (meta-control) | DE.CM-1 | CM-8 | Custom Config rule (periodic Lambda) | `config-rules/src/config_recorder_enabled` | ⬜ planned |
-| CCM-12 | VPC flow logs enabled | DE.AE-3 | AU-12 | Custom Config rule (periodic Lambda) | `config-rules/src/vpc_flow_logs` | ⬜ planned |
+| CCM-08 | No 0.0.0.0/0 ingress on sensitive ports | PR.AC-5 | SC-7 | Custom Config rule (periodic Lambda) | `config-rules/src/sg_open_ingress` | ✅ implemented |
+| CCM-09 | CloudTrail enabled, multi-region | PR.PT-1 | AU-2 | Custom Config rule (periodic Lambda) | `config-rules/src/cloudtrail_enabled` | ✅ implemented |
+| CCM-10 | CloudTrail log-file validation enabled | PR.DS-6 | AU-9 | Custom Config rule (periodic Lambda) | `config-rules/src/cloudtrail_log_validation` | ✅ implemented |
+| CCM-11 | Config recorder enabled (meta-control) | DE.CM-1 | CM-8 | Custom Config rule (periodic Lambda) | `config-rules/src/config_recorder_enabled` | ✅ implemented |
+| CCM-12 | VPC flow logs enabled | DE.AE-3 | AU-12 | Custom Config rule (periodic Lambda) | `config-rules/src/vpc_flow_logs` | ✅ implemented |
 
 ## Evidence-attestable (0/4 implemented)
 

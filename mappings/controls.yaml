@@ -37,7 +37,7 @@ controls:
     nist_800_53: [SC-28]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/rds_encryption
-    status: planned
+    status: implemented
 
   - id: CCM-04
     name: EBS volumes encrypted
@@ -46,7 +46,7 @@ controls:
     nist_800_53: [SC-28]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/ebs_encryption
-    status: planned
+    status: implemented
 
   - id: CCM-05
     name: IAM password policy meets standard
@@ -64,7 +64,7 @@ controls:
     nist_800_53: ["IA-2(1)"]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/iam_user_mfa
-    status: planned
+    status: implemented
 
   - id: CCM-07
     name: Root account has no access keys
@@ -82,7 +82,7 @@ controls:
     nist_800_53: [SC-7]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/sg_open_ingress
-    status: planned
+    status: implemented
 
   - id: CCM-09
     name: CloudTrail enabled, multi-region
@@ -91,7 +91,7 @@ controls:
     nist_800_53: [AU-2]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/cloudtrail_enabled
-    status: planned
+    status: implemented
 
   - id: CCM-10
     name: CloudTrail log-file validation enabled
@@ -100,7 +100,7 @@ controls:
     nist_800_53: [AU-9]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/cloudtrail_log_validation
-    status: planned
+    status: implemented
 
   - id: CCM-11
     name: Config recorder enabled (meta-control)
@@ -109,7 +109,7 @@ controls:
     nist_800_53: [CM-8]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/config_recorder_enabled
-    status: planned
+    status: implemented
 
   - id: CCM-12
     name: VPC flow logs enabled
@@ -118,7 +118,7 @@ controls:
     nist_800_53: [AU-12]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/vpc_flow_logs
-    status: planned
+    status: implemented
 
   # ---- Bucket 2: evidence-attestable (custom Python collectors) ----
   - id: CCM-13

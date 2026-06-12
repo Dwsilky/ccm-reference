@@ -87,7 +87,7 @@ Work in progress, built in deliberate layers (see commit history):
 
 - [x] Control catalog + coverage matrix generation (21 controls sorted into buckets)
 - [x] First custom Config rules with moto-tested evaluation logic (4/12)
-- [ ] Remaining Config rules (machine-evaluable bucket complete)
+- [x] Remaining Config rules — machine-evaluable bucket complete (12/12, 43 tests)
 - [ ] ASFF normalizer: Config + Prowler + custom collector → one schema
 - [ ] Evidence collectors (attestable bucket)
 - [ ] Router + judgment tracker + evidence loop
