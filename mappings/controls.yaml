@@ -9,6 +9,13 @@
 #   judgment   - human-judgment: automate only the reminder + tracking
 #
 # status: implemented | planned
+#
+# severity: finding severity when the control FAILS (ASFF label). Drives the
+#           router's SLA tier. Passing findings are always INFORMATIONAL.
+# prowler_checks: optional Prowler event_codes that evidence the same control,
+#           so scanner findings attribute to catalog coverage. Best-effort —
+#           unmapped Prowler findings still normalize, they just carry no
+#           ccm:control_id.
 
 controls:
   # ---- Bucket 1: machine-evaluable (custom AWS Config rules) ----
@@ -17,6 +24,8 @@ controls:
     bucket: machine
     csf: PR.DS-5
     nist_800_53: [SC-7]
+    severity: HIGH
+    prowler_checks: [s3_account_level_public_access_blocks]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/s3_public_access_block
     status: implemented
@@ -26,6 +35,8 @@ controls:
     bucket: machine
     csf: PR.DS-1
     nist_800_53: [SC-28]
+    severity: MEDIUM
+    prowler_checks: [s3_bucket_default_encryption]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/s3_bucket_encryption
     status: implemented
@@ -35,6 +46,7 @@ controls:
     bucket: machine
     csf: PR.DS-1
     nist_800_53: [SC-28]
+    severity: HIGH
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/rds_encryption
     status: implemented
@@ -44,6 +56,7 @@ controls:
     bucket: machine
     csf: PR.DS-1
     nist_800_53: [SC-28]
+    severity: MEDIUM
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/ebs_encryption
     status: implemented
@@ -53,6 +66,7 @@ controls:
     bucket: machine
     csf: PR.AC-1
     nist_800_53: [IA-5]
+    severity: MEDIUM
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/iam_password_policy
     status: implemented
@@ -62,6 +76,7 @@ controls:
     bucket: machine
     csf: PR.AC-7
     nist_800_53: ["IA-2(1)"]
+    severity: HIGH
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/iam_user_mfa
     status: implemented
@@ -71,6 +86,8 @@ controls:
     bucket: machine
     csf: PR.AC-4
     nist_800_53: [AC-6]
+    severity: CRITICAL
+    prowler_checks: [iam_no_root_access_key]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/root_access_keys
     status: implemented
@@ -80,6 +97,7 @@ controls:
     bucket: machine
     csf: PR.AC-5
     nist_800_53: [SC-7]
+    severity: CRITICAL
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/sg_open_ingress
     status: implemented
@@ -89,6 +107,8 @@ controls:
     bucket: machine
     csf: PR.PT-1
     nist_800_53: [AU-2]
+    severity: HIGH
+    prowler_checks: [cloudtrail_multi_region_enabled]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/cloudtrail_enabled
     status: implemented
@@ -98,6 +118,7 @@ controls:
     bucket: machine
     csf: PR.DS-6
     nist_800_53: [AU-9]
+    severity: MEDIUM
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/cloudtrail_log_validation
     status: implemented
@@ -107,6 +128,7 @@ controls:
     bucket: machine
     csf: DE.CM-1
     nist_800_53: [CM-8]
+    severity: HIGH
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/config_recorder_enabled
     status: implemented
@@ -116,6 +138,8 @@ controls:
     bucket: machine
     csf: DE.AE-3
     nist_800_53: [AU-12]
+    severity: MEDIUM
+    prowler_checks: [vpc_flow_logs_enabled]
     method: Custom Config rule (periodic Lambda)
     source: config-rules/src/vpc_flow_logs
     status: implemented
@@ -126,6 +150,7 @@ controls:
     bucket: attestable
     csf: PR.AC-4
     nist_800_53: ["AC-2(3)"]
+    severity: MEDIUM
     method: Collector — GitHub Issues API, assert a labeled review ticket closed this quarter
     source: collectors/access_review.py
     status: planned
@@ -135,6 +160,7 @@ controls:
     bucket: attestable
     csf: PR.IP-4
     nist_800_53: [CP-9]
+    severity: HIGH
     method: Collector — parse backup-job logs, evidence a successful restore test
     source: collectors/backup_restore.py
     status: planned
@@ -144,6 +170,7 @@ controls:
     bucket: attestable
     csf: RS.MI-3
     nist_800_53: [RA-5, SI-2]
+    severity: MEDIUM
     method: Collector — scanner findings, compute time-to-remediate per severity
     source: collectors/vuln_sla.py
     status: planned
@@ -153,6 +180,7 @@ controls:
     bucket: attestable
     csf: PR.IP-3
     nist_800_53: [CM-3]
+    severity: MEDIUM
     method: Collector — GitHub API, merged PRs carried a required approval
     source: collectors/change_approval.py
     status: planned
@@ -163,6 +191,7 @@ controls:
     bucket: judgment
     csf: ID.GV-1
     nist_800_53: [PL-1]
+    severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
     status: planned
@@ -172,6 +201,7 @@ controls:
     bucket: judgment
     csf: ID.RA-6
     nist_800_53: [CA-5]
+    severity: MEDIUM
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
     status: planned
@@ -181,6 +211,7 @@ controls:
     bucket: judgment
     csf: ID.SC-2
     nist_800_53: [SA-9]
+    severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
     status: planned
@@ -190,6 +221,7 @@ controls:
     bucket: judgment
     csf: PR.IP-10
     nist_800_53: [IR-3]
+    severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
     status: planned
@@ -199,6 +231,7 @@ controls:
     bucket: judgment
     csf: ID.AM-5
     nist_800_53: [RA-2]
+    severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
     status: planned
