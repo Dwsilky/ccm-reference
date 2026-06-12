@@ -1,0 +1,60 @@
+{
+  "scanner": "acme-vuln",
+  "export_time": "2026-06-11T22:00:00Z",
+  "findings": [
+    {
+      "id": "V-1001",
+      "severity": "Critical",
+      "title": "OpenSSL RCE on bastion AMI",
+      "detected_at": "2026-05-01",
+      "fixed_at": "2026-05-09"
+    },
+    {
+      "id": "V-1002",
+      "severity": "HIGH",
+      "title": "Outdated nginx on web tier",
+      "detected_at": "2026-04-02",
+      "fixed_at": "2026-05-20"
+    },
+    {
+      "id": "V-1003",
+      "severity": "medium",
+      "title": "Verbose error pages on internal API",
+      "detected_at": "2026-03-20",
+      "fixed_at": null,
+      "status": "open"
+    },
+    {
+      "id": "V-1004",
+      "severity": "low",
+      "title": "TLS 1.1 enabled on legacy ELB",
+      "detected_at": "2026-01-05",
+      "fixed_at": null,
+      "status": "open"
+    },
+    {
+      "id": "V-1005",
+      "severity": "Critical",
+      "title": "Log4j on jenkins worker",
+      "detected_at": "2026-06-01",
+      "fixed_at": null,
+      "status": "open"
+    },
+    {
+      "id": "V-1006",
+      "severity": "High",
+      "title": "Kernel CVE on NAT host",
+      "detected_at": "2026-04-01",
+      "fixed_at": null,
+      "status": "fixed",
+      "last_seen": "2026-04-28"
+    },
+    {
+      "id": "V-1007",
+      "severity": "Sev3",
+      "title": "Imported from legacy scanner with its own severity scale",
+      "detected_at": "2026-02-10",
+      "fixed_at": "2026-02-15"
+    }
+  ]
+}
