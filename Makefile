@@ -22,5 +22,6 @@ matrix:
 	$(PY) scripts/gen_matrix.py
 
 # Full local loop: seed mock AWS state -> evaluate -> normalize -> route.
-# Built out in later sessions; today it just regenerates the matrix.
-demo: matrix
+# Dry-run tickets by default; `python scripts/demo.py --live` files real issues.
+demo:
+	$(PY) scripts/demo.py

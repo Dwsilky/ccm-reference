@@ -1,0 +1,47 @@
+{
+  "finding": {
+    "SchemaVersion": "2018-10-08",
+    "Id": "config-rule/CCM-02/demo-data-lake",
+    "ProductArn": "arn:aws:securityhub:us-east-1:123456789012:product/123456789012/default",
+    "GeneratorId": "ccm/config-rule/s3_bucket_encryption",
+    "AwsAccountId": "123456789012",
+    "Types": [
+      "Software and Configuration Checks/Continuous Control Monitoring"
+    ],
+    "CreatedAt": "2026-06-13T01:04:34.432Z",
+    "UpdatedAt": "2026-06-13T01:04:34.432Z",
+    "Severity": {
+      "Label": "MEDIUM"
+    },
+    "Title": "CCM-02: S3 buckets enforce default encryption",
+    "Description": "CCM-02: bucket has no default encryption configuration.",
+    "Resources": [
+      {
+        "Type": "AWS::S3::Bucket",
+        "Id": "demo-data-lake",
+        "Region": "us-east-1"
+      }
+    ],
+    "Compliance": {
+      "Status": "FAILED"
+    },
+    "ProductFields": {
+      "ccm:source": "config-rule",
+      "ccm:control_id": "CCM-02",
+      "ccm:bucket": "machine",
+      "ccm:csf": "PR.DS-1",
+      "ccm:nist_800_53": "SC-28"
+    },
+    "RecordState": "ACTIVE",
+    "Workflow": {
+      "Status": "NEW"
+    }
+  },
+  "routing": {
+    "owner": "cloud-platform",
+    "sla_days": 90,
+    "due": "2026-09-11",
+    "ticket": "DRY-RUN-2",
+    "routed_at": "2026-06-13T01:04:34.657609+00:00"
+  }
+}

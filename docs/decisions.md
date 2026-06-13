@@ -141,3 +141,45 @@ Three sub-decisions worth defending:
 findings; consumers needing Remediation.Recommendation or FindingProviderFields
 must extend the builder (and the validator — they move together by design,
 `build_finding` calls `validate` before returning).
+
+---
+
+## ADR-005 — Router: dry-run by default, label-routing, and where this drifts
+
+**Status:** accepted
+
+**Context.** The router is the outward-facing edge of the pipeline: it files
+tickets people are expected to act on. Filing wrong or duplicate tickets is
+how a CCM program trains its owners to ignore it.
+
+**Decision.**
+
+1. **Dry-run is the default; `--live` is opt-in.** A pipeline that can spam a
+   ticket tracker on every dev iteration will, eventually.
+2. **Dedupe key is the finding Id embedded in the issue body**
+   (`ccm-finding-id:` marker), not the title — humans rename issues; the
+   router must not re-file a finding because someone tidied a title. Combined
+   with deterministic ASFF Ids (ADR-004), a re-detected finding matches its
+   open ticket exactly.
+3. **Owners are labels, not assignees.** Assignees must be repo
+   collaborators, and people change teams; `owner:<team>` labels route
+   without either constraint. The cost: nothing *forces* an owner to look —
+   in production you'd back labels with notification rules.
+4. **NOT_AVAILABLE findings don't get tickets; they get an attention list.**
+   "The collector couldn't reach its evidence" is an operational problem for
+   the pipeline owner, not a control failure for the control owner. But it
+   cannot be silent — an unreachable evidence source left alone ages into a
+   coverage gap.
+5. **Evidence artifacts are written even on dry runs** — the audit answer to
+   "show me the chain for this finding" is a file
+   (`evidence/<date>/<control>/<finding>.json` with finding + routing
+   decision), not a database query.
+
+**Where this drifts at scale (honest list).** `owners.yaml` is the weak
+point: org charts change faster than YAML. Real deployments need
+owner-resolution against a live source (service catalog, IdP groups) and a
+reconciliation report for unroutable findings. SLA tracking via `due:` labels
+works until someone edits a label; production wants the due date computed
+from immutable finding data, with the label as a view. And GitHub Issues as
+a ticket system caps out quickly — the backend interface
+(`router/tickets.py`) is the seam where Jira/ServiceNow would plug in.

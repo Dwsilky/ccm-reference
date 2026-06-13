@@ -61,9 +61,15 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements-dev.txt   # (.venv/bin/python on POSIX)
 .venv/Scripts/python -m pytest                                # evaluate rule logic against moto
 .venv/Scripts/python scripts/gen_matrix.py                    # regenerate the coverage matrix
+.venv/Scripts/python scripts/demo.py                          # the full loop: moto -> ASFF -> bus -> router
 ```
 
-No AWS credentials required for any of the above.
+No AWS credentials required for any of the above. The demo seeds a
+deliberately imperfect account in moto, runs real rule logic plus the
+scanner sample, collectors, and judgment tracker, then routes every FAILED
+finding to a dry-run ticket and writes timestamped artifacts under
+`evidence/` (see `evidence/sample/` for a committed example). Add `--live`
+to file real GitHub Issues.
 
 ## Design questions this repo answers
 
@@ -90,5 +96,5 @@ Work in progress, built in deliberate layers (see commit history):
 - [x] Remaining Config rules — machine-evaluable bucket complete (12/12, 43 tests)
 - [x] ASFF normalizer: Config + Prowler + custom collector → one schema, one bus (LocalBus/Security Hub)
 - [x] Evidence collectors — attestable bucket complete (4/4, incl. the hostile backup-log parser)
-- [ ] Router + judgment tracker + evidence loop
+- [x] Router + judgment tracker + evidence loop — all 21 controls flowing, `make demo` end-to-end
 - [ ] Terraform deploy/teardown for the real-AWS proof

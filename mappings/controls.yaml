@@ -194,7 +194,7 @@ controls:
     severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
-    status: planned
+    status: implemented
 
   - id: CCM-18
     name: Risk acceptances current (expiry tracked)
@@ -204,7 +204,7 @@ controls:
     severity: MEDIUM
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
-    status: planned
+    status: implemented
 
   - id: CCM-19
     name: Vendor risk assessments performed
@@ -214,7 +214,7 @@ controls:
     severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
-    status: planned
+    status: implemented
 
   - id: CCM-20
     name: IR plan tabletop exercised
@@ -224,7 +224,7 @@ controls:
     severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
-    status: planned
+    status: implemented
 
   - id: CCM-21
     name: Data classification reviewed
@@ -234,4 +234,4 @@ controls:
     severity: LOW
     method: Judgment tracker — attestation cadence in judgment-register.yaml
     source: router/judgment_tracker.py
-    status: planned
+    status: implemented

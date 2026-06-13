@@ -2,7 +2,7 @@
 
 _Generated from `mappings/controls.yaml` by `scripts/gen_matrix.py` on 2026-06-12. Do not edit by hand._
 
-**21 controls** across the three buckets — **16 implemented**, 5 planned.
+**21 controls** across the three buckets — **21 implemented**, 0 planned.
 
 ## Machine-evaluable (12/12 implemented)
 
@@ -34,15 +34,15 @@ _No computable pass/fail, but the artifact proving the process ran can be pulled
 | CCM-15 | Vulnerability remediation SLAs met | RS.MI-3 | RA-5, SI-2 | Collector — scanner findings, compute time-to-remediate per severity | `collectors/vuln_sla.py` | ✅ implemented |
 | CCM-16 | Change approvals enforced on merges | PR.IP-3 | CM-3 | Collector — GitHub API, merged PRs carried a required approval | `collectors/change_approval.py` | ✅ implemented |
 
-## Human-judgment (0/5 implemented)
+## Human-judgment (5/5 implemented)
 
 _Not automatable. We automate only the reminder and the tracking of the attestation._
 
 | ID | Control | CSF | 800-53 | Collection method | Source | Status |
 |---|---|---|---|---|---|---|
-| CCM-17 | Security policy review / adequacy | ID.GV-1 | PL-1 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ⬜ planned |
-| CCM-18 | Risk acceptances current (expiry tracked) | ID.RA-6 | CA-5 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ⬜ planned |
-| CCM-19 | Vendor risk assessments performed | ID.SC-2 | SA-9 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ⬜ planned |
-| CCM-20 | IR plan tabletop exercised | PR.IP-10 | IR-3 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ⬜ planned |
-| CCM-21 | Data classification reviewed | ID.AM-5 | RA-2 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ⬜ planned |
+| CCM-17 | Security policy review / adequacy | ID.GV-1 | PL-1 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ✅ implemented |
+| CCM-18 | Risk acceptances current (expiry tracked) | ID.RA-6 | CA-5 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ✅ implemented |
+| CCM-19 | Vendor risk assessments performed | ID.SC-2 | SA-9 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ✅ implemented |
+| CCM-20 | IR plan tabletop exercised | PR.IP-10 | IR-3 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ✅ implemented |
+| CCM-21 | Data classification reviewed | ID.AM-5 | RA-2 | Judgment tracker — attestation cadence in judgment-register.yaml | `router/judgment_tracker.py` | ✅ implemented |
 
