@@ -17,7 +17,9 @@ from normalizer.bus import LocalBus
 LOCAL_ACCOUNT = "000000000000"
 
 
-def publish(result: dict, bus=None) -> dict:
-    finding = from_collector(result, account_id=os.environ.get("CCM_ACCOUNT_ID", LOCAL_ACCOUNT))
+def publish(result: dict, bus=None, source: str = "collector") -> dict:
+    finding = from_collector(
+        result, account_id=os.environ.get("CCM_ACCOUNT_ID", LOCAL_ACCOUNT), source=source
+    )
     (bus or LocalBus()).publish([finding])
     return finding

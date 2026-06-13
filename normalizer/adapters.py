@@ -97,7 +97,9 @@ def from_prowler(check: dict) -> dict:
 COLLECTOR_REQUIRED_KEYS = ("control_id", "status", "resource_type", "resource_id", "summary")
 
 
-def from_collector(result: dict, account_id: str, region: str = "global") -> dict:
+def from_collector(
+    result: dict, account_id: str, region: str = "global", source: str = "collector"
+) -> dict:
     """Adapt a custom collector result.
 
     Collectors assert on evidence ("a review ticket closed this quarter"),
@@ -105,6 +107,9 @@ def from_collector(result: dict, account_id: str, region: str = "global") -> dic
     source itself was unreachable, which maps to NOT_AVAILABLE rather than
     FAILED: 'we couldn't check' must never be reported as 'it failed', and
     silently passing would be worse.
+
+    The judgment tracker reuses this contract with source="tracker" so its
+    findings are distinguishable on the bus while flowing the same path.
     """
     missing = [k for k in COLLECTOR_REQUIRED_KEYS if k not in result]
     if missing:
@@ -118,9 +123,9 @@ def from_collector(result: dict, account_id: str, region: str = "global") -> dic
         fields[f"evidence:{key}"] = str(value)
 
     return build_finding(
-        source="collector",
+        source=source,
         control_id=control.id,
-        generator_id=f"ccm/collector/{control.source.rsplit('/', 1)[-1]}",
+        generator_id=f"ccm/{source}/{control.source.rsplit('/', 1)[-1]}",
         account_id=account_id,
         region=region,
         resource_type=result["resource_type"],

@@ -1,0 +1,37 @@
+# Bucket 3 register: human-judgment controls (ADR-003).
+#
+# The automation here is ONLY the reminder and the tracking. last_attested is
+# updated by a human merging a PR to this file with the artifact reference —
+# which makes the PR itself (author, approver, timestamp) the attestation
+# evidence, for free, in a system that's already access-controlled.
+
+register:
+  - control: CCM-17
+    owner: ciso-office
+    cadence_days: 365
+    last_attested: 2026-01-15
+    artifact: "Security Policy v4.2 annual review minutes (2026-01-15)"
+
+  - control: CCM-18
+    owner: ciso-office
+    cadence_days: 90        # risk acceptances go stale fast; quarterly re-affirmation
+    last_attested: 2026-02-20
+    artifact: "Risk register export with acceptance expiry column (2026-02-20)"
+
+  - control: CCM-19
+    owner: vendor-management
+    cadence_days: 365
+    last_attested: 2025-09-30
+    artifact: "Vendor assessment tracker, FY25-Q3 cycle"
+
+  - control: CCM-20
+    owner: security-ops
+    cadence_days: 365
+    last_attested: 2025-05-10
+    artifact: "IR tabletop exercise report (2025-05-10, scenario: ransomware)"
+
+  - control: CCM-21
+    owner: data-governance
+    cadence_days: 365
+    last_attested: 2026-03-31
+    artifact: "Data classification review sign-off (2026-03-31)"
