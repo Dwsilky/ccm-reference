@@ -14,6 +14,7 @@ evidence/2*/
 deploy/.terraform/
 deploy/*.tfstate*
 deploy/.terraform.lock.hcl
+deploy/build/
 
 # Secrets — never commit credentials
 .env
