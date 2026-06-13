@@ -1,0 +1,39 @@
+# Owner routing: which team gets the ticket when a control fails.
+#
+# Owners are team labels, not GitHub assignees, on purpose: assignees must be
+# repo collaborators and people change teams — label-routing survives both.
+# In production this file is the thing that drifts (ADR-005); here it is at
+# least version-controlled next to the controls it routes.
+
+default_owner: grc-engineering
+
+owners:
+  CCM-01: cloud-platform
+  CCM-02: cloud-platform
+  CCM-03: data-platform
+  CCM-04: cloud-platform
+  CCM-05: identity
+  CCM-06: identity
+  CCM-07: identity
+  CCM-08: cloud-platform
+  CCM-09: security-ops
+  CCM-10: security-ops
+  CCM-11: security-ops
+  CCM-12: network
+  CCM-13: identity
+  CCM-14: infrastructure
+  CCM-15: security-ops
+  CCM-16: developer-experience
+  # Judgment controls route to the accountable human function, not a platform team.
+  CCM-17: ciso-office
+  CCM-18: ciso-office
+  CCM-19: vendor-management
+  CCM-20: security-ops
+  CCM-21: data-governance
+
+# Remediation SLA per finding severity, in days. due = finding UpdatedAt + SLA.
+sla_days:
+  CRITICAL: 7
+  HIGH: 30
+  MEDIUM: 90
+  LOW: 180

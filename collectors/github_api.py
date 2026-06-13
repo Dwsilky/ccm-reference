@@ -43,6 +43,13 @@ class GitHubClient:
         if token:
             self.headers["Authorization"] = f"Bearer {token}"
 
+    def post(self, path: str, payload: dict) -> dict:
+        resp = self.http.post(
+            f"{API}{path}", headers=self.headers, json=payload, timeout=30
+        )
+        resp.raise_for_status()
+        return resp.json()
+
     def get_all(self, path: str, **params) -> list[dict]:
         """Fetch every page; a short page terminates the loop."""
         items: list[dict] = []
