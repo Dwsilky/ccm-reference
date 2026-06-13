@@ -18,6 +18,11 @@ pipeline. Everything runs locally with zero AWS spend (moto-mocked AWS, vendored
 sample data); Terraform in `deploy/` proves the same code on real AWS, with
 teardown documented as a first-class step.
 
+> **Want to build this yourself?** The [**Build Guide**](docs/build-guide/README.md)
+> explains every layer in rebuild-it-from-scratch depth — why each piece is
+> shaped the way it is, how it's tested, the pitfalls hit along the way, and
+> worked examples for [extending it with your own controls](docs/build-guide/07-extending.md).
+
 ## The three-bucket model
 
 Every control is sorted into exactly one bucket before any code is written.
@@ -53,6 +58,7 @@ pipeline reads, so the matrix cannot drift from the code.
 | `evidence/` | Timestamped, audit-retrievable evidence artifacts (sample output committed) |
 | `deploy/` | Terraform to run it on real AWS — and tear it down (cost guardrail) |
 | `docs/decisions.md` | ADRs: why Security Hub as the bus, why this tiering, where it breaks at scale |
+| `docs/build-guide/` | **The build guide** — chapter-by-chapter instructions to recreate, understand, and extend every part of this system |
 
 ## Running locally
 
